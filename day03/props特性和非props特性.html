@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <v-span :msg="msg" val="1314" name="lijg" age="23"></v-span>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const span = {
+        props: ['msg', 'val'], //在组件的porps中的属性就是props特性，props特性的标签属性不会出现在界面的渲染上，
+        // 不在props中的就是非props特性，他会展示在界面渲染的标签上
+        template: `<span>{{msg}}--->{{val}}</span>`
+      };
+      new Vue({
+        el: '#app',
+        data: {
+          msg: 'i love you'
+        },
+        components: {
+          'v-span': span
+        }
+      });
+    </script>
+  </body>
+</html>

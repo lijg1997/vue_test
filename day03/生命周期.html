@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>{{msg}}</span>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'i love you'
+        },
+        beforeCreate() {
+          console.log('beforeCreate,初始化生命周期，事件等');
+        },
+        created() {
+          console.log('created,做数据响应式处理，组件创建完成');
+        },
+        beforeMount() {
+          console.log('beforeMount,组件准备挂载，还没有挂载');
+        },
+        mounted() {
+          console.log('mounted，组件已经挂载到了页面上');
+        },
+        beforeUpdate() {
+          console.log('beforeUpdate,当数据发生变化页面将要更新时，准备更新，没有更新完成');
+        },
+        updated() {
+          console.log('updated,页面更新完成');
+        },
+        beforeDestroy() {
+          console.log(
+            'beforeDestroy，组件将要被卸载时触发，此时还没有被卸载，可以做一些收尾工作，如清除定时器，取消ajax请求等'
+          );
+        },
+        destroyed() {
+          console.log('destoryed,组件已经完全被卸载，不能做任何操作了');
+        }
+      });
+      console.log('全局打印');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      span {
+        display: inline-block;
+        width: 100px;
+      }
+      span:last-child {
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="searchValue" />
+      <ul>
+        <li v-for="(item, index) in searchList" :key="index">
+          <span>{{item.name}}</span>
+          <span>{{item.age}}</span>
+          <span>{{item.assess}}</span>
+        </li>
+      </ul>
+      <button @click="handleUp">按年龄升序</button>
+      <button @click="handleDown">按年龄降序序</button>
+      <button @click="handleOld">按年龄原来顺序</button>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          searchValue: '',
+          list: [
+            { name: 'lijingui', age: 23, assess: 'i love you' },
+            { name: 'wajingui', age: 34, assess: 'i love you' },
+            { name: 'wangjingui', age: 263, assess: 'i love you' },
+            { name: 'linjingui', age: 2453, assess: 'i love you' },
+            { name: 'lingjingui', age: 273, assess: 'i love you' },
+            { name: 'lingijjingui', age: 2323, assess: 'i love you' }
+          ],
+          searchType: 0
+        },
+        methods: {
+          handleUp() {
+            this.searchType = 1;
+          },
+          handleDown() {
+            this.searchType = -1;
+          },
+          handleOld() {
+            this.searchType = 0;
+          }
+        },
+        computed: {
+          searchList() {
+            let SearchArr = this.list.filter(item => item.name.includes(this.searchValue));
+            switch (this.searchType) {
+              case 0:
+                break;
+
+              case 1:
+                SearchArr.sort((a, b) => a.age - b.age);
+                break;
+
+              case -1:
+                SearchArr.sort((a, b) => b.age - a.age);
+                break;
+
+              default:
+                break;
+            }
+            return SearchArr;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

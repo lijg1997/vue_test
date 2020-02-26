@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-for="(value,key,index) in person">
+        <span>{{value}}---></span>
+        <button @click="handleUpdate(index)">点击更新</button>
+      </div>
+      <button @click="handleAdd">点击增加</button>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          person: { name: 'lijingui', age: 23, wife: 'wuruichao' }
+        },
+        methods: {
+          handleUpdate(index) {
+            if (index === 0) this.person.name = '李金贵';
+            if (index === 2) this.person.wife = '武瑞超';
+            this.perosn.lover = '武瑞超222';
+          },
+          handleAdd() {
+            this.$set(this.person, 'lover', '武瑞超333');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

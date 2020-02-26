@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-for="(value, key, index) in person">
+        <span>{{index}}---></span>
+        <span>{{key}}---></span>
+        <span>{{value}}</span>
+        <button @click="handleUpdata(index)">修改</button>
+      </div>
+      <button @click="handleC">增加（无效）</button>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          person: { name: '李金贵', age: 23, lover: '武瑞超' }
+        },
+        methods: {
+          handleC() {
+            // this.person.height = 180;
+            // this.person.loverTwo = 'wuruichaoTwo';
+            this.$set(this.person, 'loverTwo', 'wuruichaoTwo');
+          },
+          handleUpdata(index) {
+            if (index === 0) this.person.name = 'lijingui';
+            if (index === 2) this.person.lover = 'wuruichao';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

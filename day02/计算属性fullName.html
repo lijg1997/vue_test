@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>firstName: </span><input type="text" v-model="firstName" /><br />
+      <span>lastName: </span><input type="text" v-model="lastName" /><br />
+      <span>fullName1: </span><input type="text" v-model="fullName1" /><br />
+      <span>fullName2: </span><input type="text" v-model="fullName2" /><br />
+      <span>fullName3: </span><input type="text" v-model="fullName3" />
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          firstName: 'Li',
+          lastName: 'JinGui',
+          fullName2: 'Li-JinGui'
+        },
+        computed: {
+          fullName1() {
+            return `${this.firstName}-${this.lastName}`;
+          },
+          fullName3: {
+            get() {
+              return `${this.firstName}-${this.lastName}`;
+            },
+            set(value) {
+              const names = value.split('-');
+              this.firstName = names[0];
+              this.lastName = names[1];
+            }
+          }
+        },
+        watch: {
+          firstName(newVal, oldVal) {
+            console.log(newVal, oldVal);
+            this.fullName2 = `${newVal}-${this.lastName}`;
+          }
+        }
+      });
+      vm.$watch('lastName', function(value) {
+        this.fullName2 = `${this.firstName}-${value}`;
+      });
+    </script>
+  </body>
+</html>

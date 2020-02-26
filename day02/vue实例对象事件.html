@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const vm = new Vue({
+        el: '#app',
+        data: { msg: 'i love you' }
+      });
+      vm.$on('lijg', function() {
+        console.log(this);
+      });
+      vm.$once('ruichao', function() {
+        console.log(this);
+      });
+      setInterval(() => {
+        vm.$emit('lijg');
+      }, 1000);
+      setTimeout(() => {
+        vm.$off('lijg');
+      }, 3000);
+    </script>
+  </body>
+</html>

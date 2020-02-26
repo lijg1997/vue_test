@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <v-lijg title="lijingui"></v-lijg>
+      <v-lijg title="LIJG"></v-lijg>
+      <v-lijg title="LIJINGUI"></v-lijg>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const lijg = {
+        props: ['title'],
+        template: `<p @click="handleClick">{{lijgTitle}}</p>`,
+        data() {
+          return {
+            lijgTitle: this.title
+          };
+        },
+        methods: {
+          handleClick() {
+            this.bus.$emit('change', this.lijgTitle);
+          }
+        },
+        mounted() {
+          this.bus.$on('change', title => {
+            this.lijgTitle = title;
+          });
+        }
+      };
+      Vue.prototype.bus = new Vue();
+      new Vue({
+        el: '#app',
+        components: {
+          'v-lijg': lijg
+        }
+      });
+    </script>
+  </body>
+</html>

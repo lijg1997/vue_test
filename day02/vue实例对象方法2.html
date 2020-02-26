@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      {{msg}}
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'i love you'
+        }
+      });
+      vm.$on('lijg', () => {
+        console.log('i love you 1');
+      });
+      vm.$on('lijg', () => {
+        console.log('i love you 2');
+      });
+      vm.$on('lijg', () => {
+        console.log('i love you 3');
+      });
+      vm.$on('lijg', () => {
+        console.log('i love you 4');
+      });
+      vm.$on('lijg', () => {
+        console.log('i love you 5');
+      });
+      function six() {
+        console.log('i love you 6');
+      }
+      vm.$on('lijg', six);
+      setInterval(() => {
+        vm.$emit('lijg');
+      }, 1000);
+
+      setTimeout(() => {
+        vm.$off('lijg', six);
+      }, 2000);
+      setTimeout(() => {
+        vm.$off();
+      }, 4000);
+    </script>
+  </body>
+</html>

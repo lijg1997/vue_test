@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{msg}}</p>
+      <v-btn @click="handleClick"></v-btn>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          msg: 'i love you'
+        },
+        methods: {
+          handleClick() {
+            console.log(this, 'app');
+          }
+        },
+        components: {
+          'v-btn': {
+            template: `<button @click="handleClick">点我哦</button>`,
+            methods: {
+              handleClick() {
+                console.log(this, 'v-btn');
+                this.$emit('click');
+              }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

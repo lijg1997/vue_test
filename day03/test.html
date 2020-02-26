@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <v-lijg></v-lijg>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const lijg = {
+        template: `<div>
+        <p @click="handleChange(msg1)">{{msg1}}</p>
+        <p @click="handleChange(msg2)">{{msg2}}</p>
+        <p @click="handleChange(msg3)">{{msg3}}</p>
+        </div>`,
+        data() {
+          return {
+            msg1: 'lijg',
+            msg2: 'lijingui',
+            msg3: 'LIJG'
+          };
+        },
+        methods: {
+          handleChange(value) {
+            this.bus.$emit('changeText', value);
+          }
+        },
+        mounted() {
+          this.bus.$on('changeText', msg => {
+            this.msg1 = msg;
+            this.msg2 = msg;
+            this.msg3 = msg;
+          });
+        }
+      };
+      Vue.prototype.bus = new Vue();
+      new Vue({
+        el: '#app',
+
+        components: {
+          'v-lijg': lijg
+        }
+      });
+    </script>
+  </body>
+</html>

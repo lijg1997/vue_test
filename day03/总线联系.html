@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <v-test title="i love you"></v-test>
+      <v-test title="i love you too"></v-test>
+      <v-test title="i love you soo much"></v-test>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const test = {
+        props: ['title'],
+        template: `<p @click="handleClick">{{newTitle}}</p>`,
+        data() {
+          return {
+            newTitle: this.title
+          };
+        },
+        methods: {
+          handleClick() {
+            this.bus.$emit('changeText', this.newTitle);
+          }
+        },
+        mounted() {
+          this.bus.$on('changeText', title => {
+            this.newTitle = title;
+          });
+        }
+      };
+      Vue.prototype.bus = new Vue();
+      new Vue({
+        el: '#app',
+        components: {
+          'v-test': test
+        }
+      });
+    </script>
+  </body>
+</html>

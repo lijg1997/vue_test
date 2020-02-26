@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <v-arc :num="num" :fun="fun"></v-arc>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const arc = {
+        props: {
+          num: {
+            type: Number,
+            // default: 100,
+            required: true,
+            validator(value) {
+              return value > 10;
+            }
+          },
+          fun: {
+            type: Function
+          }
+        },
+        template: `<i>{{num}}-->{{fun()}}</i>`
+      };
+      new Vue({
+        el: '#app',
+        data: {
+          num: 19,
+          fun: function() {
+            return 'i love you';
+          },
+          str: 'i love you too'
+        },
+        components: {
+          'v-arc': arc
+        }
+      });
+    </script>
+  </body>
+</html>

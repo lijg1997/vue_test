@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app1">
+      <v-div1></v-div1>
+      <v-div3></v-div3>
+    </div>
+    <hr />
+    <div id="app2">
+      <v-div2></v-div2>
+      <v-div4></v-div4>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      Vue.component('v-div3', {
+        template: `<div><h3>{{msg}}</h3></div>`,
+        data() {
+          return {
+            msg: 'i love you soo much'
+          };
+        }
+      });
+      Vue.component('v-div4', {
+        template: `<div><h4>{{msg}}</h4></div>`,
+        data() {
+          return {
+            msg: 'i love you soo soo much'
+          };
+        }
+      });
+      new Vue({
+        el: '#app1',
+        components: {
+          'v-div1': {
+            template: `<div><h1>i love you</h1></div>`
+          }
+        }
+      });
+      new Vue({
+        el: '#app2',
+        components: {
+          'v-div2': {
+            template: `<div><h2>i love you too</h2></div>`
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

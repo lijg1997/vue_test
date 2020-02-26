@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .arc {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        border-radius: 50%;
+        line-height: 100px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <v-arc :num="num" @click="handleAdd"></v-arc>
+      <v-arc :num="num" @click="handleAdd"></v-arc>
+      <i class="arc">{{num}}</i>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const arc = {
+        props: {
+          num: {
+            type: Number,
+            required: true,
+            validator(value) {
+              return value >= 0;
+            }
+          }
+        },
+        data() {
+          return {
+            newNum: this.num,
+            step: 2
+          };
+        },
+        template: `<i @click="handleClick" class="arc">{{newNum}}</i>`,
+        methods: {
+          handleClick() {
+            this.newNum += this.step;
+            this.$emit('click', this.step);
+          }
+        }
+      };
+      new Vue({
+        el: '#app',
+        data: {
+          num: 0
+        },
+        methods: {
+          handleAdd(value) {
+            this.num += value;
+          }
+        },
+        components: {
+          'v-arc': arc
+        }
+      });
+    </script>
+  </body>
+</html>

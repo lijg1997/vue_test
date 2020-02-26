@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .arc {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: skyblue;
+        line-height: 100px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <v-i :num="num"></v-i>
+      <v-i :num="num"></v-i>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          num: 0
+        },
+        components: {
+          'v-i': {
+            props: ['num'],
+            template: `<i class="arc" @click="handleAdd">{{newNum}}</i>`,
+            data() {
+              return {
+                newNum: this.num
+              };
+            },
+            methods: {
+              handleAdd() {
+                this.newNum++;
+              }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

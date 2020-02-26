@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .v-leave {
+        opacity: 1;
+      }
+      .v-leave-active {
+        transition: 10s all;
+      }
+      .v-leave-to {
+        opacity: 0;
+        color: deeppink;
+      }
+
+      .v-enter {
+        opacity: 0;
+        color: deeppink;
+      }
+      .v-enter-active {
+        transition: 10s all;
+      }
+      .v-enter-to {
+        opacity: 1;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="handleC">click</button>
+      <transition>
+        <p v-show="flag">{{msg}}</p>
+      </transition>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          msg: 'i love you soo soo much',
+          flag: true
+        },
+        methods: {
+          handleC() {
+            this.flag = !this.flag;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <v-a></v-a>
+      <v-b></v-b>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      const a = {
+        data() {
+          return {
+            msg: 'a-i love you'
+          };
+        },
+        template: `<p @click="handleClick">{{msg}}</p>`,
+        methods: {
+          handleClick() {
+            this.bus.$emit('changeText', this.msg);
+          }
+        }
+      };
+      const b = {
+        data() {
+          return {
+            msg: 'b-i love you'
+          };
+        },
+        template: `<p>{{msg}}</p>`,
+        mounted() {
+          this.bus.$on('changeText', msg => {
+            this.msg = msg;
+          });
+        }
+      };
+      Vue.prototype.bus = new Vue();
+      new Vue({
+        el: '#app',
+        components: {
+          'v-a': a,
+          'v-b': b
+        }
+      });
+    </script>
+  </body>
+</html>

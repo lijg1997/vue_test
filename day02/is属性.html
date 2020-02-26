@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{msg}}</p>
+      <table>
+        <tr is="v-tr"></tr>
+      </table>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      Vue.component('v-tr', {
+        template: `<tr><td>{{msg}}</td></tr>`,
+        data() {
+          return {
+            msg: 'i love you too'
+          };
+        }
+      });
+      new Vue({
+        el: '#app',
+        data: {
+          msg: 'i love you'
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <span>{{msg}}</span><br />
+      <span>{{reverseMsg}}</span>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      new Vue({
+        el: '#app',
+        data: {
+          msg: 'i love you soo much'
+        },
+        computed: {
+          reverseMsg() {
+            return this.msg
+              .split('')
+              .reverse()
+              .join('');
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
