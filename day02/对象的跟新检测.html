@@ -18,16 +18,16 @@
       new Vue({
         el: '#app',
         data: {
-          person: { name: 'lijingui', age: 23, wife: 'wuruichao' }
+          person: { name: 'lijingui', age: 23, wife: '111' }
         },
         methods: {
           handleUpdate(index) {
             if (index === 0) this.person.name = '李金贵';
-            if (index === 2) this.person.wife = '武瑞超';
-            this.perosn.lover = '武瑞超222';
+            if (index === 2) this.person.wife = '222';
+            this.perosn.lover = '333';
           },
           handleAdd() {
-            this.$set(this.person, 'lover', '武瑞超333');
+            this.$set(this.person, 'lover', '444');
           }
         }
       });

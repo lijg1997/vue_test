@@ -20,17 +20,17 @@
       new Vue({
         el: '#app',
         data: {
-          person: { name: '李金贵', age: 23, lover: '武瑞超' }
+          person: { name: '李金贵', age: 23, lover: '111' }
         },
         methods: {
           handleC() {
             // this.person.height = 180;
-            // this.person.loverTwo = 'wuruichaoTwo';
-            this.$set(this.person, 'loverTwo', 'wuruichaoTwo');
+            // this.person.loverTwo = '222';
+            this.$set(this.person, 'loverTwo', '111');
           },
           handleUpdata(index) {
             if (index === 0) this.person.name = 'lijingui';
-            if (index === 2) this.person.lover = 'wuruichao';
+            if (index === 2) this.person.lover = '111';
           }
         }
       });
