@@ -14,9 +14,9 @@
 > 数据绑定
 
 ```
-v-model //最重要的
-v-text //文本遇到标签不会渲染
-v-html //遇到html标签，会将标签效果渲染出来
+v-model
+v-text
+v-html
 ```
 
 > 事件
