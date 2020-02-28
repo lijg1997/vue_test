@@ -18,11 +18,12 @@ import { v4 as uuidv4 } from "uuid";
 export default {
   data() {
     return {
-      listArr: [
-        { id: uuidv4(), content: "i love you", checked: false },
-        { id: uuidv4(), content: "i love you too", checked: false },
-        { id: uuidv4(), content: "i love you soo much", checked: false }
-      ]
+      listArr: []
+      /* 
+      { id: uuidv4(), content: "i love you", checked: false },
+      { id: uuidv4(), content: "i love you too", checked: false },
+      { id: uuidv4(), content: "i love you soo much", checked: false } 
+      */
     };
   },
   components: {
@@ -43,9 +44,7 @@ export default {
   },
   mounted() {
     let oldListArr = JSON.parse(localStorage.getItem("listArr"));
-    if (!oldListArr)
-      localStorage.setItem("listArr", JSON.stringify(this.listArr));
-    this.listArr = oldListArr;
+    oldListArr ? (this.listArr = oldListArr) : [];
     this.bus.$on("change", (id, checked) => {
       this.listArr.forEach(item => {
         if (item.id === id) item.checked = checked;
@@ -56,8 +55,16 @@ export default {
       this.listArr = this.listArr.filter(item => item.id !== id);
     });
   },
-  beforeUpdate() {
-    localStorage.setItem("listArr", JSON.stringify(this.listArr));
+  // beforeUpdate() {
+  //   localStorage.setItem("listArr", JSON.stringify(this.listArr));
+  // }
+  watch: {
+    listArr: {
+      handler: function(val, oldVal) {
+        localStorage.setItem("listArr", JSON.stringify(val));
+      },
+      deep: true
+    }
   }
 };
 </script>
