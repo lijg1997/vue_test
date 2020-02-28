@@ -20,7 +20,7 @@ export default {
   methods: {
     addTodo() {
       if (!this.todo.trim()) return;
-      let id = util.get("todoId", 2);
+      let id = util.get("todoId", 0);
       id++;
       util.set("todoId", id);
       let todoObj = {

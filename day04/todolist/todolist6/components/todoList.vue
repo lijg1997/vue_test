@@ -9,6 +9,7 @@
       <template slot="inputSlot" slot-scope="{ index }">
         <slot name="inputSlot" :index="index"></slot>
       </template>
+
       <template slot="spanSlot" slot-scope="{ content }">
         <slot name="spanSlot" :content="content"></slot>
       </template>

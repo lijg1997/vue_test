@@ -4,7 +4,8 @@
       <input type="checkbox" v-model="allFinish" />
     </label>
     <span>
-      <span>已完成{{ finishCount }}</span> / 全部{{ listArr.length }}
+      <span>已完成{{finishCount}}</span>
+      / 全部{{listArr.length}}
     </span>
     <button class="btn btn-danger" @click="clear">清除已完成任务</button>
   </div>
@@ -14,6 +15,9 @@
 export default {
   props: {
     listArr: Array
+  },
+  data() {
+    return {};
   },
   computed: {
     finishCount() {

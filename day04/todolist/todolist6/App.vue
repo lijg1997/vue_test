@@ -3,9 +3,9 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <TodoHeader @addTodo="addTodo"></TodoHeader>
-        <TodoList :listArr="listArr" style="color:hotpink;">
+        <TodoList :listArr="listArr">
           <template slot="inputSlot" slot-scope="{ index }">
-            <input type="checkbox" v-model="listArr[index].checked" />
+            <input type="checkbox" v-model="listArr[index].checked" />ლ(′◉❥◉｀ლ)
           </template>
           <template slot="spanSlot" slot-scope="{ content }">
             <span>{{ content }}</span>
@@ -50,6 +50,12 @@ export default {
   },
   mounted() {
     this.listArr = util.get("listArr", []);
+    this.bus.$on("change", (id, checked) => {
+      this.listArr.forEach(item => {
+        if (item.id === id) this.checked = checked;
+      });
+    });
+
     this.bus.$on("delTodo", id => {
       this.listArr = this.listArr.filter(item => item.id !== id);
     });

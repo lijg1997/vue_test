@@ -4,7 +4,7 @@
       <slot name="inputSlot" :index="index">
         <input type="checkbox" v-model="checked" />
       </slot>
-      <slot name="spanSlot" :content="item.content">
+      <slot :content="item.content" name="spanSlot">
         <span>{{ item.content }}</span>
       </slot>
     </label>
@@ -17,6 +17,9 @@ export default {
   props: {
     item: Object,
     index: Number
+  },
+  data() {
+    return {};
   },
   computed: {
     checked: {
@@ -37,22 +40,23 @@ export default {
 </script>
 
 <style scoped>
+.line {
+  position: relative;
+}
+.line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 97%;
+  height: 1px;
+  background-color: red;
+}
 li:hover {
   background-color: skyblue;
 }
 li:hover button {
   display: block;
-}
-.line {
-  position: relative;
-}
-.line::before {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 98%;
-  height: 1px;
-  background-color: red;
 }
 li {
   list-style: none;

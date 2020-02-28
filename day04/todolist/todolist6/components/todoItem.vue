@@ -1,14 +1,16 @@
 <template>
-  <li :class="{ line: checked }">
+  <li
+    :class="{ highLight, line: checked }"
+    @mouseenter="highLight = !highLight"
+    @mouseleave="highLight = !highLight"
+  >
     <label>
-      <slot name="inputSlot" :index="index">
-        <input type="checkbox" v-model="checked" />
-      </slot>
-      <slot name="spanSlot" :content="item.content">
-        <span>{{ item.content }}</span>
-      </slot>
+      <slot name="inputSlot" :index="index" :checked="checked"> </slot>
+      <slot name="spanSlot" :content="item.content"> </slot>
     </label>
-    <button class="btn btn-danger" @click="delTodo">删除</button>
+    <button class="btn btn-danger" v-show="highLight" @click="delTodo">
+      删除
+    </button>
   </li>
 </template>
 
@@ -17,6 +19,11 @@ export default {
   props: {
     item: Object,
     index: Number
+  },
+  data() {
+    return {
+      highLight: false
+    };
   },
   computed: {
     checked: {
@@ -37,20 +44,18 @@ export default {
 </script>
 
 <style scoped>
-li:hover {
+.highLight {
   background-color: skyblue;
-}
-li:hover button {
-  display: block;
 }
 .line {
   position: relative;
 }
 .line::before {
+  content: "";
   position: absolute;
   left: 0;
   top: 50%;
-  width: 98%;
+  width: 97%;
   height: 1px;
   background-color: red;
 }
@@ -76,10 +81,7 @@ li label li input {
 
 li button {
   float: right;
-  display: none;
   margin-top: 3px;
-  position: relative;
-  z-index: 9;
 }
 
 li:before {
