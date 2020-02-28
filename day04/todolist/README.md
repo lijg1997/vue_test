@@ -28,9 +28,12 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 - list
   - item
 - footer
-  > 数据驱动
+
+> 数据驱动
+
 - 在分析数据的时候，发现所有的组件都用到了这些数据，所以把数据放在 App 身上是最合适的
-  > 组件功能的实现
+
+> 组件功能的实现
 
 ## header
 
