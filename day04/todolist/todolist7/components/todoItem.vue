@@ -1,18 +1,14 @@
 <template>
-  <li
-    :class="{highLight, line:item.checked}"
-    @mouseenter="highLight = !highLight"
-    @mouseleave="highLight = !highLight"
-  >
+  <li :class="{ line: checked }">
     <label>
-      <!-- <input type="checkbox" /> -->
-      <!-- <span>xxxxx</span> -->
       <slot name="inputSlot" :index="index">
-        <!-- <input type="checkbox"  v-model="checked"> -->
+        <input type="checkbox" v-model="checked" />
       </slot>
-      <slot name="spanSlot" :content="item.content"></slot>
+      <slot name="spanSlot" :content="item.content">
+        <span>{{ item.content }}</span>
+      </slot>
     </label>
-    <button class="btn btn-danger" v-show="highLight" @click="delTodo">删除</button>
+    <button class="btn btn-danger" @click="delTodo">删除</button>
   </li>
 </template>
 
@@ -22,10 +18,15 @@ export default {
     item: Object,
     index: Number
   },
-  data() {
-    return {
-      highLight: false
-    };
+  computed: {
+    checked: {
+      get() {
+        return this.item.checked;
+      },
+      set(val) {
+        this.bus.$emit("change", this.item.id, val);
+      }
+    }
   },
   methods: {
     delTodo() {
@@ -36,14 +37,16 @@ export default {
 </script>
 
 <style scoped>
-.highLight {
+li:hover {
   background-color: skyblue;
+}
+li:hover button {
+  display: block;
 }
 .line {
   position: relative;
 }
 .line::before {
-  content: "";
   position: absolute;
   left: 0;
   top: 50%;
@@ -73,8 +76,10 @@ li label li input {
 
 li button {
   float: right;
-  /* display: none; */
+  display: none;
   margin-top: 3px;
+  position: relative;
+  z-index: 9;
 }
 
 li:before {

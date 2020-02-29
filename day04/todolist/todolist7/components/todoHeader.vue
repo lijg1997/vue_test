@@ -1,6 +1,11 @@
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="请输入你的任务名称，按回车键确认" v-model="todo" @keyup.enter="addTodo" />
+    <input
+      type="text"
+      placeholder="请输入你的任务名称，按回车键确认"
+      v-model="todo"
+      @keyup.enter="addTodo"
+    />
   </div>
 </template>
 
@@ -8,12 +13,14 @@
 import util from "@/util";
 export default {
   data() {
-    return { todo: "" };
+    return {
+      todo: ""
+    };
   },
   methods: {
     addTodo() {
       if (!this.todo.trim()) return;
-      let id = util.get("todoId", 0);
+      let id = util.get("todoId", 2);
       id++;
       util.set("todoId", id);
       let todoObj = {

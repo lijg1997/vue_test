@@ -8,5 +8,5 @@ Vue.prototype.bus = new Vue();
 new Vue({
   el: "#app",
   components: { App },
-  template: "<App/>"
+  template: "<App />"
 });
