@@ -3,20 +3,21 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <TodoHeader @addTodo="addTodo"></TodoHeader>
-        <TodoList :listArr="listArr">
-          <template #inputSlot="{index}">
+        <TodoList :listArr="listArr" style="color:hotpink;">
+          <template v-slot:inputSlot="{index}">
             ლ(′◉❥◉｀ლ)
             <input type="checkbox" v-model="listArr[index].checked" />
           </template>
-          <template #spanSlot="{content}">
-            <span>{{ content }}</span>
+          <template v-slot:spanSlot="{content}">
+            <span>{{content}}</span>
           </template>
         </TodoList>
-        <TodoFooter
-          :listArr="listArr"
-          @allFinish="allFinish"
-          @clear="clear"
-        ></TodoFooter>
+        <TodoFooter :listArr="listArr">
+          <template #allFinish>
+            ლ(′◉❥◉｀ლ)
+            <input type="checkbox" v-model="allFinish" />
+          </template>
+        </TodoFooter>
       </div>
     </div>
   </div>
@@ -26,11 +27,14 @@
 import TodoHeader from "./components/todoHeader";
 import TodoList from "./components/todoList";
 import TodoFooter from "./components/todoFooter";
-import util from "./util";
 export default {
   data() {
     return {
-      listArr: []
+      listArr: [
+        { id: 0, content: "you love me", checked: false },
+        { id: 1, content: "you love me soo much", checked: false },
+        { id: 2, content: "you love me very much", checked: false }
+      ]
     };
   },
   components: {
@@ -41,26 +45,25 @@ export default {
   methods: {
     addTodo(todoObj) {
       this.listArr.unshift(todoObj);
-    },
-    allFinish(val) {
-      this.listArr.map(item => (item.checked = val));
-    },
-    clear() {
-      this.listArr = this.listArr.filter(item => !item.checked);
     }
   },
   mounted() {
-    this.listArr = util.get("listArr", []);
     this.bus.$on("delTodo", id => {
       this.listArr = this.listArr.filter(item => item.id !== id);
     });
   },
-  watch: {
-    listArr: {
-      handler(val) {
-        util.set("listArr", val);
+  computed: {
+    allFinish: {
+      get() {
+        return this.listArr.map(item => {
+          if (item.checked === false) return;
+          else return true;
+        });
       },
-      deep: true
+      set(val) {
+        console.log(val);
+        this.listArr.map(item => (item.checked = val));
+      }
     }
   }
 };

@@ -1,16 +1,18 @@
 <template>
   <li
-    :class="{ highLight, line: item.checked }"
+    :class="{highLight, line:item.checked}"
     @mouseenter="highLight = !highLight"
     @mouseleave="highLight = !highLight"
   >
     <label>
-      <slot name="inputSlot" :index="index"></slot>
+      <!-- <input type="checkbox" /> -->
+      <!-- <span>xxxxx</span> -->
+      <slot name="inputSlot" :index="index">
+        <!-- <input type="checkbox"  v-model="checked"> -->
+      </slot>
       <slot name="spanSlot" :content="item.content"></slot>
     </label>
-    <button class="btn btn-danger" v-show="highLight" @click="delTodo">
-      删除
-    </button>
+    <button class="btn btn-danger" v-show="highLight" @click="delTodo">删除</button>
   </li>
 </template>
 
@@ -71,9 +73,8 @@ li label li input {
 
 li button {
   float: right;
+  /* display: none; */
   margin-top: 3px;
-  position: relative;
-  z-index: 9;
 }
 
 li:before {

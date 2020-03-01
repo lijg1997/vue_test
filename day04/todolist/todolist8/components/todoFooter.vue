@@ -1,10 +1,12 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" v-model="allFinish" />
+      <!-- <input type="checkbox" /> -->
+      <slot name="allFinish"></slot>
     </label>
     <span>
-      <span>已完成{{ finishCount }}</span> / 全部{{ listArr.length }}
+      <span>已完成{{finishCount}}</span>
+      / 全部{{listArr.length}}
     </span>
     <button class="btn btn-danger" @click="clear">清除已完成任务</button>
   </div>
@@ -23,15 +25,6 @@ export default {
       return this.listArr.reduce((adder, item) => {
         return (adder += item.checked ? 1 : 0);
       }, 0);
-    },
-    allFinish: {
-      get() {
-        let flag = this.finishCount !== 0 && this.listArr.length !== 0;
-        return this.finishCount === this.listArr.length && flag;
-      },
-      set(val) {
-        this.$emit("allFinish", val);
-      }
     }
   },
   methods: {
