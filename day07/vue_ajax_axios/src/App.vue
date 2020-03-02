@@ -1,22 +1,14 @@
 <template>
-  <div id="app">
-    <div class="container">
-      <section class="jumbotron">
-        <h3 class="jumbotron-heading">Search Github Users</h3>
-        <Search />
-      </section>
-      <List />
-    </div>
+  <div>
+    <h1>App组件</h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Search from "./components/search";
-import List from "./components/list";
 export default {
-  components: {
-    Search,
-    List
+  data() {
+    return {};
   }
 };
 </script>

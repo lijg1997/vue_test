@@ -4,16 +4,14 @@
     <div data-v-957c9522="">
       <ul data-v-957c9522="" class="nav nav-tabs">
         <li data-v-957c9522="">
-          <router-link to="/home/news" class="router-link-exact-active active"
+          <router-link to="/home/news" class="router-link-exact-active"
             >News</router-link
           >
         </li>
         <li data-v-957c9522="">
-          <router-link
-            to="/home/message"
-            class="router-link-exact-active active"
-            >News</router-link
-          >
+          <router-link to="/home/message" class="router-link-exact-active">
+            Message
+          </router-link>
         </li>
       </ul>
       <router-view></router-view>
