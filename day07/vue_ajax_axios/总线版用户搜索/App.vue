@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div class="container">
-      <Search />
+      <section class="jumbotron">
+        <h3 class="jumbotron-heading">Search Github Users</h3>
+        <Search />
+      </section>
       <List />
     </div>
   </div>
@@ -15,4 +18,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

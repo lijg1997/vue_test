@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Search from "./components/Search";
-import List from "./components/List";
+import Search from "../components/search";
+import List from "../components/list";
 export default {
   components: { Search, List }
 };
