@@ -3,13 +3,15 @@
     <a :href="item.href" target="_blank">
       <img :src="item.src" style="width: 100px" />
     </a>
-    <p class="card-text">{{item.name}}</p>
+    <p class="card-text">{{ item.name }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["item"]
+  props: {
+    item: Object
+  }
 };
 </script>
 

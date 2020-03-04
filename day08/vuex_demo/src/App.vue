@@ -1,12 +1,19 @@
 <template>
-  <div>
-    <h1>{{ $store.state.msg }}</h1>
-    <router-view></router-view>
+  <div id="app">
+    <div class="container">
+      <Search />
+      <List />
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import Search from "./components/search";
+import List from "./components/list";
+export default {
+  components: { Search, List }
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
