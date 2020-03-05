@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 
-Vue.config.productionTip = false;
+Vue.config.producationTip = false;
 
 Vue.prototype.$bus = new Vue();
 

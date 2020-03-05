@@ -5,7 +5,7 @@
       <input
         type="text"
         placeholder="enter the name you search"
-        v-model="searchName"
+        v-model.lazy.trim="searchName"
         @keyup.enter="search"
       />
       <button @click="search">Search</button>
@@ -14,20 +14,25 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
-  data() {
-    return {
-      searchName: ""
-    };
+  computed: {
+    searchName: {
+      get() {
+        return this.$store.state.searchName;
+      },
+      set(val) {
+        if (!val) return;
+        console.log(val);
+        this.$store.dispatch("searchName", val);
+      }
+    }
   },
   methods: {
-    search() {
-      if (!this.searchName) return;
-      this.$bus.$emit("search", this.searchName);
-      this.searchName = "";
-    }
+    ...mapActions(["search"])
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
