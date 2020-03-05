@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <div class="container">
-      <Search />
-      <List />
-    </div>
+  <div>
+    <h2>{{$store.state.msg}}</h2>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Search from "./components/search";
-import List from "./components/list";
 export default {
-  components: { Search, List }
+  data() {
+    return {};
+  }
 };
 </script>
 
